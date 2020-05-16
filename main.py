@@ -35,7 +35,7 @@ print(tourney_ids)
 
 game_ids = []
 pagetest = open('pagetest.txt', 'w')
-for touney_id in tourney_ids:
+for tourney_id in tourney_ids:
   print('searching for games in tourney id {}'.format(tourney_id))
   options = webdriver.ChromeOptions()
   options.add_argument('--headless')
