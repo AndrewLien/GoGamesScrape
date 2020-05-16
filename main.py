@@ -24,7 +24,7 @@ def get_tournaments(x):
 
 tourney_ids = []
 pagecount = math.ceil(tournament_count()/100)
-for x in range(1, 2):  # 2 = pagecount+1
+for x in range(1, pagecount+1):
   results = json.loads(get_tournaments(x))['results']
   for y in results:
     if y['board_size'] == board_size:
@@ -50,6 +50,8 @@ for tourney_id in tourney_ids:
     if not os.path.exists('results/{}'.format(game_id)):
       game_ids.append(game_id)
       print('game: {}'.format(game_id))
+    else:
+      print('skip game: {}'.format(game_id))
 
 driver.quit()
 
