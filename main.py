@@ -2,6 +2,7 @@ import requests
 import json
 import math
 import time
+import os
 # from lxml import etree
 # from io import StringIO
 from selenium import webdriver
@@ -29,28 +30,40 @@ for x in range(1, 2):  # 2 = pagecount+1
     if y['board_size'] == board_size:
       tourney_id = y['id']
       print('tournament: ' + str(tourney_id))
-      tourney_ids += [tourney_id]
+      tourney_ids.append(tourney_id)
   print('got page {} of {}'.format(x, pagecount))
-print(tourney_ids)
 
 game_ids = []
-pagetest = open('pagetest.txt', 'w')
+
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+driver = webdriver.Chrome(options=options)
+
 for tourney_id in tourney_ids:
   print('searching for games in tourney id {}'.format(tourney_id))
-  options = webdriver.ChromeOptions()
-  options.add_argument('--headless')
-  options.add_argument('--no-sandbox')
-  driver = webdriver.Chrome(options=options)
   driver.get('https://online-go.com/tournament/{}'.format(str(tourney_id)))
   time.sleep(5)
   x = driver.find_elements_by_xpath('//a[starts-with(@href, "/game/")]')
   for y in x:
     game_id = y.get_attribute('href').split('/')[-1]
-    game_ids.append(game_id)
-    pagetest.write('game_id' + '\n')
-    print('game: {}'.format(game_id))
-  driver.quit()
+    if not os.path.exists('results/{}'.format(game)):
+      game_ids.append(game_id)
+      print('game: {}'.format(game_id))
+
+driver.quit()
+
+game_ids = set(game_ids)
 
 
-pagetest.close()
+if not os.path.exists('results'):
+    os.makedirs('results')
+
+for game_id in game_ids:
+  sgf = requests.get('https://online-go.com/api/v1/games/{}}/sgf'.format(game_id)).text
+  output = open('results/{}'.format(game_id)), 'w')
+  output.write(sgf)
+  output.close()
+  print('got sgf for game {}'.format(game_id))
+
 print('Got all tournament links for board size ' + str(board_size))
