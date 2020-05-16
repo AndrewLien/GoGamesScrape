@@ -29,7 +29,7 @@ for x in range(1, 2):  # 2 = pagecount+1
     if y['board_size'] == board_size:
       tourney_id = y['id']
       print('tournament: ' + str(tourney_id))
-      tourney_ids = tourney_ids.append(tourney_id)
+      tourney_ids += [tourney_id]
   print('got page {} of {}'.format(x, pagecount))
 
 game_ids = []
