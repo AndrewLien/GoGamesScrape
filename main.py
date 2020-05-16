@@ -4,9 +4,6 @@ import math
 import time
 import os
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 board_size = int(input('What board size do you want? 9 or 13?'))
 assert(board_size == int(9) or board_size == int(13)), 'Not 9 or 13!'
@@ -54,7 +51,6 @@ for tourney_id in tourney_ids:
 driver.quit()
 
 game_ids = set(game_ids)
-
 
 if not os.path.exists('results'):
     os.makedirs('results')
