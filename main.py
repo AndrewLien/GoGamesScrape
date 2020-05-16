@@ -32,10 +32,7 @@ for x in range(1, 2):  # 2 = pagecount+1
       tourney_ids.append(tourney_id)
   print('got page {} of {}'.format(x, pagecount))
 
-driver = ''
-def resetDriver():
-  if driver:
-    driver.quit()
+def restartDriver():
   options = webdriver.ChromeOptions()
   options.add_argument('--headless')
   options.add_argument('--no-sandbox')
@@ -44,7 +41,7 @@ def resetDriver():
 game_ids = []
 pagetest = open('pagetest.txt', 'w')
 for touney_id in tourney_ids:
-  resetDriver()
+  restartDriver()
   driver.get('https://online-go.com/tournament/{}'.format(str(tourney_id)))
   time.sleep(5)
   x = driver.find_elements_by_xpath('//a[starts-with(@href, "/game/")]')
@@ -53,6 +50,7 @@ for touney_id in tourney_ids:
     game_ids.append(game_id)
     pagetest.write('game_id' + '\n')
     print('game: {}'.format(game_id))
+  driver.quit()
 
 
 pagetest.close()
