@@ -60,7 +60,7 @@ if not os.path.exists('results'):
     os.makedirs('results')
 
 for game_id in game_ids:
-  sgf = requests.get('https://online-go.com/api/v1/games/{}}/sgf'.format(game_id)).text
+  sgf = requests.get('https://online-go.com/api/v1/games/{}/sgf'.format(game_id)).text
   output = open('results/{}'.format(game_id), 'w')
   output.write(sgf)
   output.close()
