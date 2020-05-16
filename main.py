@@ -61,7 +61,7 @@ if not os.path.exists('results'):
 
 for game_id in game_ids:
   sgf = requests.get('https://online-go.com/api/v1/games/{}}/sgf'.format(game_id)).text
-  output = open('results/{}'.format(game_id)), 'w')
+  output = open('results/{}'.format(game_id), 'w')
   output.write(sgf)
   output.close()
   print('got sgf for game {}'.format(game_id))
