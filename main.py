@@ -35,6 +35,7 @@ for x in range(1, 2):  # 2 = pagecount+1
 game_ids = []
 pagetest = open('pagetest.txt', 'w')
 for touney_id in tourney_ids:
+  print('searching for games in tourney id {}'.format(tourney_id))
   options = webdriver.ChromeOptions()
   options.add_argument('--headless')
   options.add_argument('--no-sandbox')
