@@ -52,7 +52,7 @@ game_ids = []
 pagetest = open('pagetest.txt', 'w')
 for touney_id in tourney_ids:
   driver.get('https://online-go.com/tournament/{}'.format(str(tourney_id)))
-  WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,'//div[@class="top-details"]')))
+  WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.ID,'//div[@class="top-details"]')))
   time.sleep(2)
   x = driver.find_elements_by_xpath('//a[starts-with(@href, "/game/")]/@href')
   for y in x:
