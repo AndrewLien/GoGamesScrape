@@ -1,0 +1,4 @@
+Go to https://online-go.com/tournaments
+Scrape tournament links, filtering for 9x9 games
+From tournament pages, scrape game IDs (use set() to remove duplicates)
+Download SGF files from API "https://online-go.com/api/v1/games/[game ID]/sgf"
