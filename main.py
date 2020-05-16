@@ -31,6 +31,7 @@ for x in range(1, 2):  # 2 = pagecount+1
       print('tournament: ' + str(tourney_id))
       tourney_ids += [tourney_id]
   print('got page {} of {}'.format(x, pagecount))
+print(tourney_ids)
 
 game_ids = []
 pagetest = open('pagetest.txt', 'w')
