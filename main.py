@@ -23,7 +23,7 @@ def get_tournaments(x):
 
 tourney_ids = []
 pagecount = math.ceil(tournament_count()/100)
-for x in range(1, 4):  # pagecount+1
+for x in range(1, 2):  # 2 = pagecount+1
   results = json.loads(get_tournaments(x))['results']
   for y in results:
     if y['board_size'] == board_size:
@@ -32,19 +32,6 @@ for x in range(1, 4):  # pagecount+1
       tourney_ids.append(tourney_id)
   print('got page {} of {}'.format(x, pagecount))
 
-# def getPage(url):
-#     response = StringIO(requests.get(url).text)
-#     return etree.parse(response, etree.HTMLParser())
-
-
-# for tourney_id in tourney_ids:
-#   tree = getPage('https://online-go.com/tournament/{}'.format(tourney_id))
-#   '''
-#   challenge: page renders with scripts after the page is requested... meaning that we'll need an automated browser to access the content iff I can't find an API
-#   '''
-#   url = tree.xpath('//a[starts-with(@href, "/game/")]/@href')
-#   print(url)
-
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 driver = webdriver.Chrome(options=options)
@@ -52,8 +39,8 @@ game_ids = []
 pagetest = open('pagetest.txt', 'w')
 for touney_id in tourney_ids:
   driver.get('https://online-go.com/tournament/{}'.format(str(tourney_id)))
-  WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.ID,'//div[@class="top-details"]')))
-  time.sleep(2)
+  # WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.ID,'//div[@class="top-details"]')))
+  time.sleep(5)
   x = driver.find_elements_by_xpath('//a[starts-with(@href, "/game/")]/@href')
   for y in x:
     game_id = y.split('/')[-1]
