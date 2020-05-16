@@ -47,7 +47,7 @@ for tourney_id in tourney_ids:
   x = driver.find_elements_by_xpath('//a[starts-with(@href, "/game/")]')
   for y in x:
     game_id = y.get_attribute('href').split('/')[-1]
-    if not os.path.exists('results/{}'.format(game)):
+    if not os.path.exists('results/{}'.format(game_id)):
       game_ids.append(game_id)
       print('game: {}'.format(game_id))
 
