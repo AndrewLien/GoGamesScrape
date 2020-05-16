@@ -34,6 +34,7 @@ for x in range(1, 2):  # 2 = pagecount+1
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
+options.add_argument('--no-sandbox')
 driver = webdriver.Chrome(options=options)
 game_ids = []
 pagetest = open('pagetest.txt', 'w')
