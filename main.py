@@ -5,8 +5,8 @@ import time
 import os
 from selenium import webdriver
 
-board_size = int(input('What board size do you want? 9 or 13?'))
-assert(board_size == int(9) or board_size == int(13)), 'Not 9 or 13!'
+board_size = int(input('What board size do you want? [9, 13, 19] - '))
+assert(board_size in [9, 13, 19]), 'Needs to be 9, 13, or 19!'
 
 def tournament_count():
   page = requests.get('https://online-go.com/api/v1/tournaments')
@@ -42,7 +42,7 @@ for tourney_id in tourney_ids:
   x = driver.find_elements_by_xpath('//a[starts-with(@href, "/game/")]')
   for y in x:
     game_id = y.get_attribute('href').split('/')[-1]
-    if not os.path.exists('results/{}'.format(game_id)):
+    if not os.path.exists('results/{}/{}'.format(board_size, game_id)):
       game_ids.append(game_id)
       print('game: {}'.format(game_id))
     else:
@@ -52,12 +52,20 @@ driver.quit()
 
 game_ids = set(game_ids)
 
-if not os.path.exists('results'):
-    os.makedirs('results')
+pathstocheck = [
+  'results',
+  'results/9'
+  'results/13',
+  'resullts/19',
+]
+for path in pathstocheck:
+  if not os.path.exists(path):
+    os.makedirs(path)
+
 
 for game_id in game_ids:
   sgf = requests.get('https://online-go.com/api/v1/games/{}/sgf'.format(game_id)).text
-  output = open('results/{}'.format(game_id), 'w')
+  output = open('results/{}/{}'.format(board_size, game_id), 'w')
   output.write(sgf)
   output.close()
   print('got sgf for game {}'.format(game_id))
