@@ -9,4 +9,4 @@ The overall process is:
 
 Notes
 - Included is a simple script (chrome_ubuntu.sh) to setup Google Chrome and Chromedriver for browser automation on a Ubuntu server.
-- poetry.lock and pyproject.toml are just setup files from [repl.it](https://repl.it/@AndrewLien/9x9GoGamesScrape), an online IDE.
+- poetry.lock and pyproject.toml are just setup files from [repl.it](https://repl.it/@AndrewLien/9x9GoGamesScrape), an online IDE that cacn lilnk to Github.
