@@ -7,6 +7,8 @@ The overall process is:
 2. Using browser automation, go to each tournament page to scrape game IDs
 3. Download sgf files by calling the API with the game IDs
 
+This can be used to gather raw data on a specified type of tournament game for machine learning projects, e.g. if you were interested in win rates of different opennings at various levels of play.
+
 Notes
 - Included is a simple script (chrome_ubuntu.sh) to setup Google Chrome and Chromedriver for browser automation on a Ubuntu server.
 - poetry.lock and pyproject.toml are just setup files from [repl.it](https://repl.it/@AndrewLien/9x9GoGamesScrape), an online IDE that cacn lilnk to Github.
