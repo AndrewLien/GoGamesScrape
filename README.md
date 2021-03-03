@@ -7,7 +7,7 @@ The overall process is:
 2. Using browser automation, go to each tournament page to scrape game IDs
 3. Download sgf files by calling the API with the game IDs
 
-This can be used to gather raw data on a specified type of tournament game for machine learning projects, e.g. if you were interested in win rates of different opennings at various levels of play.
+This can be used to gather raw data on a specified type of tournament game for machine learning projects, e.g. if you were interested in win rates of different opennings at various levels of play or if you wanted to try building up an AI to learn to play.
 
 Notes
 - Included is a simple script (chrome_ubuntu.sh) to setup Google Chrome and Chromedriver for browser automation on a Ubuntu server.
